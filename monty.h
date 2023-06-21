@@ -56,5 +56,6 @@ size_t line_size(char *b, int i);
 int fill_b(char *buffer, int i, char **b, size_t *n, int fd, size_t size);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void pint(stack_t **stack, __attribute__((unused))unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
