@@ -22,7 +22,7 @@ void free_stack(stack_t *stack)
 			if (next_e)
 				next_e = next_e->next;
 		}
-		return ;
+		return;
 	}
 	next_e = stack->prev;
 	while (stack)

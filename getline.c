@@ -5,10 +5,9 @@
 /**
  * custom_getline - function
  *
- * @buffer: buffer
- * @size: size
- * @file: file
- *
+ * @b: size
+ * @n: file
+ * @fd: file
  * Return: number
  */
 ssize_t custom_getline(char **b, size_t *n, int fd)
@@ -44,7 +43,7 @@ ssize_t custom_getline(char **b, size_t *n, int fd)
 }
 
 /**
- * _read - reads content from file
+ * custom_read - reads content from file
  * @b: buffer to be filled
  * @size: buffer size
  * @fd: file descriptor
