@@ -49,5 +49,11 @@ void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 stack_t *add_to_S(stack_t **stack, int n);
 stack_t *add_to_Q(stack_t **stack, int n);
+ssize_t custom_getline(char **b, size_t *n, int fd);
+void free_stack(stack_t *stack);
+int custom_read(char *b, unsigned int size, int fd);
+size_t line_size(char *b, int i);
+int fill_b(char *buffer, int i, char **b, size_t *n, int fd, size_t size);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 #endif /* MONTY_H */
