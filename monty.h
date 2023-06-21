@@ -45,9 +45,9 @@ typedef struct instruction_s
 void execute_opcode(char *instruction, unsigned int ln, stack_t **top);
 char *get_opcode(char *line);
 void (*instruction_func(char *opcode))(stack_t **, unsigned int);
-void push(stack_t **stack, unsigned int line_number)
-void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
-stack_t *add_to_S(stack_t **stack, int n)
-stack_t *add_to_Q(stack_t **stack, int n)
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+stack_t *add_to_S(stack_t **stack, int n);
+stack_t *add_to_Q(stack_t **stack, int n);
 
 #endif /* MONTY_H */

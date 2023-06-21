@@ -23,7 +23,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (struct_state == IN_STACK)
 		add_to_S(stack, n);
 	else
-		add_to_Q(stack,Q)
+		add_to_Q(stack, n);
 }
 
 /**

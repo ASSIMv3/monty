@@ -9,7 +9,7 @@
 int main(int ac, char **av)
 {
 	int fd;
-	char *buffer == NULL;
+	char *buffer = NULL;
 	size_t i = 0;
 	unsigned int line_number = 1;
 	stack_t *top = NULL;
@@ -30,7 +30,7 @@ int main(int ac, char **av)
 
 	while (getline(&buffer, &i, fd) != -1)
 	{
-		execute_op_code(buffer, line_number, &top);
+		execute_opcode(buffer, line_number, &top);
 		line_number++;
 	}
 
