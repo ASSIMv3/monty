@@ -32,6 +32,7 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 	instruction_t list[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 	unsigned int i;
