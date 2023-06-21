@@ -28,7 +28,7 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-	while (getline(&buffer, &i, fd) != -1)
+	while (custom_getline(&buffer, &i, fd) != -1)
 	{
 		execute_opcode(buffer, line_number, &top);
 		line_number++;
