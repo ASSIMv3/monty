@@ -14,7 +14,7 @@ void push(stack_t **stack, unsigned int line_number)
 	invalid = "";
 	s = strtok(NULL, "\t\n ");
 	if (s && invalid)
-		n = _atoi(s, &invalid, 10);
+		n = atoi(s);
 	if (!s || *invalid != '\0')
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
