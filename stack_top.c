@@ -8,7 +8,8 @@
  *
  * Return: Pointer to the top element of the stack
  */
-stack_t *stack_top(stack_t **stack, __attribute__((unused)) unsigned int line_number)
+stack_t *stack_top(stack_t **stack,
+		__attribute__((unused)) unsigned int line_number)
 {
 	stack_t *top, *new_top;
 
