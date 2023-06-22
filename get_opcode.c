@@ -38,7 +38,7 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
-		{"div", div},
+		{"div", division},
 		{"mul", mul},
 		{NULL, NULL}
 	};
