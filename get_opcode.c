@@ -45,6 +45,8 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 		{"pstr", print_str},
 		{"rotl", rotate_l},
 		{"rotr", rotate_r},
+		{"stack", to_stack},
+		{"queue", to_queue},
 		{NULL, NULL}
 	};
 	unsigned int i;
