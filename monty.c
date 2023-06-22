@@ -30,8 +30,8 @@ int main(int ac, char **av)
 
 	while (custom_getline(&buffer, &i, fd) != -1)
 	{
-		line_number++;
 		execute_opcode(buffer, line_number, &top);
+		line_number++;
 	}
 
 	free(buffer);
