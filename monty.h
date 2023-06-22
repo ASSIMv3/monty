@@ -68,5 +68,6 @@ void modulo(stack_t **stack, unsigned int line_number);
 void print_char(stack_t **stack, unsigned int line_number);
 void print_str(stack_t **stack, unsigned int line_number);
 unsigned int flushBuffer(char *buffer);
+void rotate(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
