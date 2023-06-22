@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * mul - multiplies the second top element of the stack with the top element of the stack
+ * mul - multiplies the second top element of the stack with the top element
  * @stack: Double pointer to the top of the stack
  * @line_number: Line number where the opcode is encountered
  * Return: void
