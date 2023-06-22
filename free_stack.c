@@ -1,35 +1,39 @@
 #include "monty.h"
 
 /**
- * free_stack - Frees memory allocated for the stack
- * @stack: Pointer to the top element of the stack
+ * free_stack - Frees a stack or queue of elements
+ *
+ * @stack: Pointer to the top element of the stack or queue
+ *
  * Return: void
  */
 void free_stack(stack_t *stack)
 {
-	stack_t *next_e;
+	stack_t *temp;
 
 	if (!stack)
 		return;
 
-	if (struct_state == IN_QUEUE)
+	if (stack_state == ELEMENT_IN_QUEUE)
 	{
-		next_e = stack->next;
+		temp = stack->next;
 		while (stack)
 		{
-			free(stack), stack = NULL;
-			stack = next_e;
-			if (next_e)
-				next_e = next_e->next;
+			free(stack);
+			stack = NULL;
+			stack = temp;
+			if (temp)
+				temp = temp->next;
 		}
 		return;
 	}
-	next_e = stack->prev;
+	temp = stack->prev;
 	while (stack)
 	{
-		free(stack), stack = NULL;
-		stack = next_e;
-		if (next_e)
-			next_e = next_e->prev;
+		free(stack);
+		stack = NULL;
+		stack = temp;
+		if (temp)
+			temp = temp->prev;
 	}
 }

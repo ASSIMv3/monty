@@ -9,14 +9,14 @@
  */
 char *get_opcode(char *line)
 {
-	const char *del;
+	const char *delim;
 	char *opcode;
 
 	if (!line)
 		return (NULL);
 
-	del = "\n\t ";
-	opcode = strtok(line, del);
+	delim = "\n\t ";
+	opcode = strtok(line, delim);
 	return (opcode);
 }
 
@@ -49,12 +49,13 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 		{"queue", to_queue},
 		{NULL, NULL}
 	};
-	unsigned int i;
+	unsigned int idx = 0;
 
-	for (i = 0; list[i].opcode; i++)
+	while (list[idx].opcode)
 	{
-		if (strcmp(opcode, list[i].opcode) == 0)
-			return (list[i].f);
+		if (strcmp(opcode, list[idx].opcode) == 0)
+                        return (list[idx].f);
+		idx++;
 	}
 	return (NULL);
 }

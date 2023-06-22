@@ -16,7 +16,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	{
 		tos_node = stack_top(stack, line_number);
 		next_tos = *stack;
-		if (struct_state == IN_STACK)
+		if (stack_state == ELEMENT_IN_STACK)
 		{
 			tos_node->prev = next_tos->prev;
 			if (next_tos->prev)

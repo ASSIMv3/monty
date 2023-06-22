@@ -1,42 +1,41 @@
 #include "monty.h"
 
-#define BUFFER_SIZE 1024
+#define BUFF_SIZE 1024
 
 /**
- * custom_getline - function
+ * custom_getline - Custom implementation of the getline function
  *
- * @b: size
- * @n: file
- * @fd: file
- * Return: number
+ * @buf: Pointer to the buffer that will store the line
+ * @n: Pointer to the size of the buffer
+ * @file: File descriptor to read from
+ *
+ * Return: the number of characters read | -1 (Failure)
  */
-ssize_t custom_getline(char **b, size_t *n, int fd)
+ssize_t custom_getline(char **buf, size_t *n, int file)
 {
-	static char buffer[BUFFER_SIZE];
+	static char buffer[BUFF_SIZE];
 	static int i;
 	size_t size;
 
-	/* read from file */
-	if (i == 0 || i >= BUFFER_SIZE || buffer[i] == '\0')
+	if (i == 0 || i >= BUFF_SIZE || buffer[i] == '\0')
 	{
-		if (custom_read(buffer, BUFFER_SIZE, fd) == 0)
+		if (custom_read(buffer, BUFF_SIZE, file) == 0)
 			return (-1);
 		i = 0;
 	}
 
-	/* free if nececcary */
-	if (b && (*b))
-		free(*b), *b = NULL;
-
-	/* allocate size of memory */
+	if (buf && (*buf))
+	{
+		free(*buf);
+		*buf = NULL;
+	}
 	size = line_size(buffer, i) + 1;
-	*b = malloc(sizeof(char) * size);
-	if (!(*b))
+	*buf = malloc(sizeof(char) * size);
+	if (!(*buf))
 		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
 
-	/* fill b */
 	*n = 0;
-	i = fill_b(buffer, i, b, n, fd, size);
+	i = fill_buff(buffer, i, buf, n, file, size);
 	++i;
 
 	return (1);
@@ -44,80 +43,90 @@ ssize_t custom_getline(char **b, size_t *n, int fd)
 
 /**
  * custom_read - reads content from file
- * @b: buffer to be filled
+ * @buf: buffer to be filled
  * @size: buffer size
- * @fd: file descriptor
+ * @file: file descriptor
  *
  * Return: number of characters read
  */
-int custom_read(char *b, unsigned int size, int fd)
+int custom_read(char *buf, unsigned int size, int file)
 {
 	unsigned int j;
-	int ret;
+	int ret_val;
 
-	/* clear buffer */
-	for (j = 0; j < size; j++)
-		b[j] = '\0';
+	j = 0;
+	while (j < size)
+	{
+		buf[j] = '\0';
+		j++;
+	}
 
-	/* read from file */
-	ret = read(fd, b, size);
-	if (ret == -1)
-		fprintf(stderr, "Error: read failed\n"), exit(EXIT_FAILURE);
+	ret_val = read(file, buf, size);
+	if (ret_val == -1)
+	{
+		fprintf(stderr, "Error: read failed\n");
+		exit(EXIT_FAILURE);
+	}
 
-	return (ret);
+	return (ret_val);
 }
 
 /**
  * line_size - counts a line's size of characters
- * @b: buffer
- * @i: starting index
+ *
+ * @buf: buffer
+ * @idx: starting index
  *
  * Return: number of characters in a line
  */
-size_t line_size(char *b, int i)
+size_t line_size(char *buf, int idx)
 {
 	size_t size;
 
 	size = 0;
-	while ((i < BUFFER_SIZE) && b[i] && b[i] != '\n')
-		size++, i++;
+	while ((idx < BUFF_SIZE) && buf[idx] && buf[idx] != '\n')
+	{
+		size++;
+		idx++;
+	}
 
 	return (size);
 }
 
 /**
- * fill_b - fills buffer 'b' with a line from 'buffer'
- * @buffer: buffer containing content
- * @i: starting index of buffer
- * @b: pointer to buffer to be filled
- * @n: pointer to b's index
- * @fd: file desciptor
- * @size: b old size
+ * fill_buff - fills buffer 'buf' with a line from 'buffer'
  *
- * Return: new position of i
+ * @buffer: buffer containing content
+ * @idx: starting index of buffer
+ * @buf: pointer to buffer to be filled
+ * @n: pointer to buf's index
+ * @file: file desciptor
+ * @size: buf old size
+ *
+ * Return: new position of idx
  */
-int fill_b(char *buffer, int i, char **b, size_t *n,
-int fd, size_t size)
+int fill_buff(char *buffer, int idx, char **buf, size_t *n,
+		int file, size_t size)
 {
 	size_t new_size;
 
 	new_size = 0;
-	for (; buffer[i] != '\n'; i++)
+	for (; buffer[idx] != '\n'; idx++)
 	{
-		if (i >= BUFFER_SIZE)
+		if (idx >= BUFF_SIZE)
 		{
-			if (custom_read(buffer, BUFFER_SIZE, fd) == 0)
+			if (custom_read(buffer, BUFF_SIZE, file) == 0)
 				break;
-			i = 0;
-			/* allocate more memory */
-			new_size = size + line_size(buffer, i);
-			(*b) = _realloc(*b, size, new_size);
-			i = -1;
+			idx = 0;
+
+			new_size = size + line_size(buffer, idx);
+			(*buf) = custom_realloc(*buf, size, new_size);
+			idx = -1;
 		}
 		else
-			(*b)[(*n)++] = buffer[i];
+			(*buf)[(*n)++] = buffer[idx];
 	}
-	(*b)[(*n)] = '\0';
+	(*buf)[(*n)] = '\0';
 
-	return (i);
+	return (idx);
 }

@@ -22,11 +22,9 @@ void print_str(stack_t **stack,
 		tmp = NULL;
 	while (tmp)
 	{
-		/* check if buffer is full */
 		if (i >= 99)
 			i = flushBuffer(buffer);
 
-		/* fill buffer */
 		if (tmp->n < 32 || tmp->n > 126)
 			break;
 		buffer[i++] = tmp->n;

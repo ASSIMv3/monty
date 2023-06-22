@@ -13,7 +13,7 @@ stack_t *stack_top(stack_t **stack,
 {
 	stack_t *top, *new_top;
 
-	if (struct_state == IN_STACK)
+	if (stack_state == ELEMENT_IN_STACK)
 	{
 		new_top = (*stack)->prev;
 		if (new_top)

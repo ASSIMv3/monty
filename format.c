@@ -12,7 +12,7 @@ void to_stack(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *node1, *node2, *lagging;
 
-	if (struct_state == IN_QUEUE)
+	if (stack_state == ELEMENT_IN_QUEUE)
 	{
 		if (*stack && (*stack)->next)
 		{
@@ -30,7 +30,7 @@ void to_stack(stack_t **stack, __attribute__((unused))unsigned int line_number)
 			}
 			lagging->prev = NULL;
 		}
-		struct_state = IN_STACK;
+		stack_state = ELEMENT_IN_STACK;
 	}
 }
 
@@ -46,7 +46,7 @@ void to_queue(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *node1, *node2, *lagging;
 
-	if (struct_state == IN_STACK)
+	if (stack_state == ELEMENT_IN_STACK)
 	{
 		if (*stack && (*stack)->prev)
 		{
@@ -64,6 +64,6 @@ void to_queue(stack_t **stack, __attribute__((unused))unsigned int line_number)
 			}
 			lagging->next = NULL;
 		}
-		struct_state = IN_QUEUE;
+		stack_state = ELEMENT_IN_QUEUE;
 	}
 }

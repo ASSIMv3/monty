@@ -1,38 +1,41 @@
 #include "monty.h"
 
 /**
- * _realloc - reallocates a memory block using malloc and free
- * @ptr: previous memory pointer
- * @old_size: size of ptr int bytes
- * @new_size: new size in bytes
- * Return: pointer to new allocated memory (Success) | NULL (Failure)
+ * custom_realloc - Custom implementation of realloc function
+ *
+ * @ptr: Pointer to the original memory block
+ * @o_size: Original size of the memory block
+ * @n_size: New size to which the memory block should be reallocated
+ *
+ * Return: ptr to the new allocated memory | NULL
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *custom_realloc(void *ptr, unsigned int o_size, unsigned int n_size)
 {
-	void *p;
-	char *c, *k;
-	unsigned int i;
+	unsigned int idx = 0;
+	void *new_alloc;
+	char *dest;
+	char *src;
 
-	if (new_size == old_size && ptr)
+	if (n_size == o_size && ptr)
 		return (ptr);
-	if (!new_size && ptr)
+	if (!n_size && ptr)
 	{
 		free(ptr);
-		return (0);
+		return (NULL);
 	}
-	p = malloc(new_size);
-	if (!p)
-		return (0);
+	new_alloc = malloc(n_size);
+	if (!new_alloc)
+		return (NULL);
 	if (!ptr)
-		return (p);
-	i = 0;
-	c = p;
-	k = ptr;
-	while (i < old_size && i < new_size)
+		return (new_alloc);
+	dest = new_alloc;
+	src = ptr;
+	while (idx < o_size && idx < n_size)
 	{
-		*c++ = *k++;
-		i++;
+		*dest++ = *src++;
+		idx++;
 	}
+
 	free(ptr);
-	return (p);
+	return (new_alloc);
 }

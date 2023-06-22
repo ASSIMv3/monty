@@ -16,13 +16,11 @@ void rotate_l(stack_t **stack,
 		stack_t *top = *stack;
 		stack_t *second_top = (*stack)->prev;
 
-		/* Find the last node in the stack */
 		stack_t *last = top;
 
 		while (last->prev)
 			last = last->prev;
 
-		/* Perform the rotation */
 		last->prev = top;
 		top->next = last;
 		top->prev = NULL;

@@ -17,7 +17,6 @@ void execute_opcode(char *instruction, unsigned int ln, stack_t **top)
 	opcode = get_opcode(instruction);
 	if (opcode && strchr(opcode, '#') != NULL)
 	{
-		/* Remove the comment by null-terminating at the '#' symbol */
 		*strchr(opcode, '#') = '\0';
 	}
 	if (opcode && *opcode != '\0')
