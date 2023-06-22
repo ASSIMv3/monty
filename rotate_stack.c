@@ -14,12 +14,20 @@ void rotate(stack_t **stack, unsigned int line_number)
 
 	if (stack && *stack && (*stack)->prev)
 	{
-		popped = stack_top(stack, line_number);
-		node = *stack;
-		while (node->prev)
-			node = node->prev;
-		node->prev = popped;
-		popped->next = node;
-		popped->prev = NULL;
+		stack_t *top = *stack;
+		stack_t *second_top = (*stack)->prev;
+
+		// Find the last node in the stack
+		stack_t *last = top;
+		while (last->prev)
+			last = last->prev;
+
+		// Perform the rotation
+		last->prev = top;
+		top->next = last;
+		top->prev = NULL;
+
+		second_top->next = NULL;
+		*stack = second_top;
 	}
 }
