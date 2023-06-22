@@ -54,7 +54,7 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 	while (list[idx].opcode)
 	{
 		if (strcmp(opcode, list[idx].opcode) == 0)
-                        return (list[idx].f);
+			return (list[idx].f);
 		idx++;
 	}
 	return (NULL);
