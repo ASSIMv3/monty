@@ -16,14 +16,14 @@ void print_str(stack_t **stack,
 	stack_t *tmp;
 
 	i = 0;
-	if (stack)
+	if (stack && *stack)
 		tmp = *stack;
 	else
 		tmp = NULL;
 	while (tmp)
 	{
 		/* check if buffer is full */
-		if (i >= 100)
+		if (i >= 99)
 			i = flushBuffer(buffer);
 
 		/* fill buffer */
@@ -50,7 +50,7 @@ unsigned int flushBuffer(char *buffer)
 	int i;
 
 	write(STDOUT_FILENO, buffer, 100);
-	for (i = 0; i < 100; i++)
+	for (i = 0; i <= 100; i++)
 		buffer[i] = '\0';
 	return (0);
 }
