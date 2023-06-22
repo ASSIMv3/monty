@@ -12,7 +12,6 @@
  */
 void add(stack_t **stack, unsigned int line_number)
 {
-	/* Check if stack has less than 2 elements */
 	if (stack && (!(*stack) || !(*stack)->prev))
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
@@ -20,7 +19,6 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	/* Add top 2 elements to the top of the stack */
 	(*stack)->prev->n += (*stack)->n;
 	pop(stack, line_number);
 }

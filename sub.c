@@ -13,7 +13,6 @@ void sub(stack_t **stack, unsigned int line_number)
 		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-	/* Subtract the top element from the second top element and update TOS */
 	(*stack)->prev->n -= (*stack)->n;
 	pop(stack, line_number);
 }
