@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * rotate_l - Rotates the stack to the top, moving the top element to the bottom
+ * rotate_l - Rotates the stack to the top
  *
  * @stack: Double pointer to the top of the stack
  * @line_number: Line number where the opcode is encountered
