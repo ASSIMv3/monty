@@ -66,5 +66,7 @@ void division(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void modulo(stack_t **stack, unsigned int line_number);
 void print_char(stack_t **stack, unsigned int line_number);
+void print_str(stack_t **stack, unsigned int line_number);
+unsigned int flushBuffer(char *buffer);
 
 #endif /* MONTY_H */
