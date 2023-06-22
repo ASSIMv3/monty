@@ -40,6 +40,7 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 		{"sub", sub},
 		{"div", division},
 		{"mul", mul},
+		{"mod", modulo},
 		{NULL, NULL}
 	};
 	unsigned int i;
