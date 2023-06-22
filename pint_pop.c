@@ -33,7 +33,7 @@ void pop(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (struct_state == IN_STACK)
+	if (stack_state == ELEMENT_IN_STACK)
 	{
 		new_top = (*stack)->prev;
 		if (new_top)

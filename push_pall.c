@@ -20,7 +20,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	n = atoi(s);
-	if (struct_state == IN_STACK)
+	if (stack_state == ELEMENT_IN_STACK)
 		add_to_S(stack, n);
 	else
 		add_to_Q(stack, n);
@@ -42,7 +42,7 @@ void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
-		if (struct_state == IN_STACK)
+		if (stack_state == ELEMENT_IN_STACK)
 			tmp = tmp->prev;
 		else
 			tmp = tmp->next;
