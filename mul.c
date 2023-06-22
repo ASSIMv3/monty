@@ -9,7 +9,7 @@
 void mul(stack_t **stack, unsigned int line_number)
 {
 	/* Check if the stack is not empty and contains at least two elements */
-	if (stack && (!(*stack) || !(*stack)->prev))
+	if (!(*stack) || !(*stack)->prev)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
 		free_stack(*stack);
