@@ -42,6 +42,7 @@ void (*instruction_func(char *opcode))(stack_t **, unsigned int)
 		{"mul", mul},
 		{"mod", modulo},
 		{"pchar", print_char},
+		{"pstr", print_str},
 		{NULL, NULL}
 	};
 	unsigned int i;
