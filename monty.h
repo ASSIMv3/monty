@@ -1,16 +1,16 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define IN_QUEUE 1
-#define IN_STACK 0
+#define ELEMENT_IN_QUEUE 1
+#define ELEMENT_IN_STACK 0
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
+#include <fcntl.h>
 
-int struct_state;
+int stack_state;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -49,13 +49,14 @@ void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 stack_t *add_to_S(stack_t **stack, int n);
 stack_t *add_to_Q(stack_t **stack, int n);
-ssize_t custom_getline(char **b, size_t *n, int fd);
+ssize_t custom_getline(char **buf, size_t *n, int file);
 void free_stack(stack_t *stack);
-int custom_read(char *b, unsigned int size, int fd);
+int custom_read(char *buf, unsigned int size, int file);
 size_t line_size(char *b, int i);
-int fill_b(char *buffer, int i, char **b, size_t *n, int fd, size_t size);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void pint(stack_t **stack, __attribute__((unused))unsigned int line_number);
+int fill_buff(char *buffer, int idx, char **buf, size_t *n,
+		int file, size_t size);
+void *custom_realloc(void *ptr, unsigned int o_size, unsigned int n_size);
+void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 stack_t *stack_top(stack_t **stack, unsigned int line_number);
