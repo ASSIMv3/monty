@@ -13,13 +13,13 @@ void push(stack_t **stack, unsigned int line_number)
 
 	invalid = "";
 	s = strtok(NULL, "\t\n ");
-	if (s && invalid)
-		n = atoi(s);
+
 	if (!s || *invalid != '\0')
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	n = atoi(s);
 	if (struct_state == IN_STACK)
 		add_to_S(stack, n);
 	else
